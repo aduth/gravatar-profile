@@ -20,8 +20,12 @@ import gravatar from '../src/index';
 describe( 'server', () => {
 	before( () => {
 		// Mock network requests
-		nock( BASE_URL ).get( VALID_REQUEST_PATH ).reply( 200, VALID_RESPONSE );
-		nock( BASE_URL ).get( INVALID_REQUEST_PATH ).reply( 200, INVALID_RESPONSE );
+		nock( BASE_URL )
+			.persist()
+			.get( VALID_REQUEST_PATH )
+			.reply( 200, VALID_RESPONSE )
+			.get( INVALID_REQUEST_PATH )
+			.reply( 200, INVALID_RESPONSE );
 	} );
 
 	after( () => {
@@ -44,6 +48,12 @@ describe( 'server', () => {
 				expect( profile ).to.be.null;
 
 				done( err );
+			} );
+		} );
+
+		it( 'should return a promise object', () => {
+			return gravatar( 'andrew@andrewduthie.com' ).then( ( profile ) => {
+				expect( profile.displayName ).to.equal( 'Andrew Duthie' );
 			} );
 		} );
 	} );

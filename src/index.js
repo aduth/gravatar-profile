@@ -2,13 +2,14 @@
  * External dependencies
  */
 
-import request from 'request';
+import request from 'superagent';
 
 /**
  * Internal dependencies
  */
 
 import url from './url';
+import maybePromisify from './maybe-promisify';
 import { INVALID_RESPONSE } from './constants';
 
 /**
@@ -17,27 +18,25 @@ import { INVALID_RESPONSE } from './constants';
  *
  * @param  {String}   email    Gravatar email address
  * @param  {Function} callback Callback to invoke when request complete
+ * @return {Promise}           A Promise object, if supported
  */
 export default function gravatar( email, callback ) {
-	if ( 'function' !== typeof callback ) {
-		throw new TypeError( 'A callback function must be specified' );
-	}
+	callback = maybePromisify( callback );
 
-	request( {
-		url: url( email ),
-		headers: {
-			'User-Agent': 'request'
-		}
-	}, function( error, response, body ) {
-		let profile;
-		try {
-			profile = JSON.parse( body ).entry[ 0 ];
-		} catch ( e ) {}
+	request( url( email ) )
+		.set( 'User-Agent', 'superagent' )
+		.end( ( error, response ) => {
+			let profile;
+			if ( response.body && response.body.entry ) {
+				profile = response.body.entry[ 0 ];
+			}
 
-		if ( ! error && ( profile === INVALID_RESPONSE || ! profile ) ) {
-			profile = null;
-		}
+			if ( ! error && ( profile === INVALID_RESPONSE || ! profile ) ) {
+				profile = null;
+			}
 
-		callback( error, profile );
-	} );
+			callback( error, profile );
+		} );
+
+	return callback.promise;
 }

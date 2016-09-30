@@ -71,5 +71,11 @@ describe( 'browser', () => {
 				done( err );
 			} );
 		} );
+
+		it( 'should return a promise object', () => {
+			return gravatar( 'andrew@andrewduthie.com' ).then( ( profile ) => {
+				expect( profile.displayName ).to.equal( 'Andrew Duthie' );
+			} );
+		} );
 	} );
 } );

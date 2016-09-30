@@ -10,6 +10,7 @@ import jsonp from 'jsonp';
 
 import url from './url';
 import { INVALID_RESPONSE } from './constants';
+import maybePromisify from './maybe-promisify';
 
 /**
  * Given an email address and callback, requests the associated Gravatar,
@@ -17,11 +18,10 @@ import { INVALID_RESPONSE } from './constants';
  *
  * @param  {String}   email    Gravatar email address
  * @param  {Function} callback Callback to invoke when request complete
+ * @return {Promise}           A Promise object, if supported
  */
 export default function gravatar( email, callback ) {
-	if ( 'function' !== typeof callback ) {
-		throw new TypeError( 'A callback function must be specified' );
-	}
+	callback = maybePromisify( callback );
 
 	jsonp( url( email ), function( error, data ) {
 		let profile;
@@ -35,4 +35,6 @@ export default function gravatar( email, callback ) {
 
 		callback( error, profile );
 	} );
+
+	return callback.promise;
 }
