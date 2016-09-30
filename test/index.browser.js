@@ -21,8 +21,8 @@ import { INVALID_REQUEST_PATH, VALID_REQUEST_PATH, INVALID_RESPONSE, VALID_RESPO
 describe( 'browser', () => {
 	before( () => {
 		// DOM initialization
-		global.document = jsdom();
-		global.window = document.parentWindow;
+		global.window = jsdom().defaultView;
+		global.document = window.document;
 
 		// Mock network requests
 		fauxjax.install();
