@@ -59,7 +59,7 @@ describe( 'browser', () => {
 				expect( err ).to.be.empty;
 				expect( profile.displayName ).to.equal( 'Andrew Duthie' );
 
-				done();
+				done( err );
 			} );
 		} );
 
@@ -68,7 +68,7 @@ describe( 'browser', () => {
 				expect( err ).to.be.empty;
 				expect( profile ).to.be.null;
 
-				done();
+				done( err );
 			} );
 		} );
 	} );
