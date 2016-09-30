@@ -112,6 +112,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Internal dependencies
 	 */
 
+	module.exports = exports['default'];
+
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
@@ -765,6 +767,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Internal dependencies
 	 */
 
+	module.exports = exports['default'];
+
 /***/ },
 /* 6 */
 /***/ function(module, exports) {
@@ -1116,6 +1120,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		return invokeCallbacks;
 	}
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ])
