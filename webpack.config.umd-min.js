@@ -3,7 +3,7 @@
  */
 
 var assign = require( 'lodash.assign' ),
-	webpack = require( 'webpack' );
+	BabiliWebpackPlugin = require( 'babili-webpack-plugin' );
 
 /**
  * Internal dependencies
@@ -19,10 +19,6 @@ module.exports = assign( {}, common, {
 		library: 'gravatar'
 	},
 	plugins: [
-		new webpack.optimize.UglifyJsPlugin( {
-			compress: {
-				warnings: false
-			}
-		} )
+		new BabiliWebpackPlugin()
 	]
 } );
