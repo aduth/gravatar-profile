@@ -1,3 +1,7 @@
+#### v1.1.1 (2016-09-30)
+
+- Fix: Provide default export at root module
+
 #### v1.1.0 (2016-09-30)
 
 - New: Now returns a Promise object in environments where supported
