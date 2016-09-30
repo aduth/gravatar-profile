@@ -44,6 +44,7 @@
     "jsdom": "^3.1.2",
     "jsonp": "^0.2.0",
     "lodash.assign": "^3.2.0",
+    "mocha": "^3.1.0",
     "nock": "^2.13.0",
     "rimraf": "^2.4.3",
     "webpack": "^1.12.2"
