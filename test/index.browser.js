@@ -56,7 +56,7 @@ describe( 'browser', () => {
 	describe( '#gravatar', () => {
 		it( 'should request a gravatar profile from an email address', ( done ) => {
 			gravatar( 'andrew@andrewduthie.com', ( err, profile ) => {
-				expect( err ).to.be.empty;
+				expect( err ).to.be.not.ok;
 				expect( profile.displayName ).to.equal( 'Andrew Duthie' );
 
 				done( err );
@@ -65,7 +65,7 @@ describe( 'browser', () => {
 
 		it( 'should return null for a profile that does not exist', ( done ) => {
 			gravatar( 'nobody@andrewduthie.com', ( err, profile ) => {
-				expect( err ).to.be.empty;
+				expect( err ).to.be.not.ok;
 				expect( profile ).to.be.null;
 
 				done( err );
