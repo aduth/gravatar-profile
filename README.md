@@ -20,6 +20,17 @@ gravatar( 'andrew@andrewduthie.com', function( err, profile ) {
 } );
 ```
 
+The function also returns a [Promise object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) in environments where they are supported:
+
+```js
+var gravatar = require( 'gravatar-profile' );
+
+gravatar( 'andrew@andrewduthie.com' ).then( function( profile ) {
+	console.log( profile.displayName );
+	// -> "Andrew Duthie"
+} );
+```
+
 ## License
 
 Copyright 2016 Andrew Duthie. Released under the MIT License.

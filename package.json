@@ -1,6 +1,6 @@
 {
   "name": "gravatar-profile",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Retrieve Gravatar profile details on the server or in the browser",
   "main": "lib/index.js",
   "browser": "lib/index.browser.js",
